@@ -1,0 +1,23 @@
+{
+  "name": "bhalu-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syedm1/bhalu-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/syedm1/bhalu-server/issues"
+  },
+  "homepage": "https://github.com/syedm1/bhalu-server#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
