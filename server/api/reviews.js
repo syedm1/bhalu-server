@@ -12,8 +12,15 @@ router.get("/reviews", async (req, res) => {
 router.post("/reviews", async (req, res) => {
   console.log(req.body.title);
   const post = new Post({
-    title: req.body.title,
-    content: req.body.content,
+    address: req.body.address,
+    agentName: req.body.agentName,
+    agentAgency: req.body.agentAgency,
+    duration: req.body.duration,
+    propertyType: req.body.propertyType,
+    propertyReview: req.body.propertyReview,
+    agentReview: req.body.agentReview,
+    propertyRating: req.body.propertyRating,
+    agentRating: req.body.agentRating,
   });
   await post.save();
   console.log(post);
