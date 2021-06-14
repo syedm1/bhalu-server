@@ -1,8 +1,11 @@
 const express = require("express");
-const Post = require("../models/review"); // new
+const Post = require("../models/review");
 const router = express.Router();
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const DESCEND = "desc";
+const ASCEND = "asc";
+
 /**
  * @swagger
  * /reviews:
@@ -18,6 +21,15 @@ router.get("/reviews", async (req, res) => {
   res.send(posts);
 });
 
+/**
+ * @swagger
+ * /reviews:
+ *    post:
+ *      description: This should save new review
+ *      responses:
+ *         '200':
+ *            description: This should save new review
+ */
 router.post("/reviews", async (req, res) => {
   console.log(req.body.title);
   const post = new Post({
@@ -36,6 +48,44 @@ router.post("/reviews", async (req, res) => {
   res.send(post);
 });
 
+/**
+ * @swagger
+ * /reviews:
+ *    get:
+ *      description: This should return all reviews
+ *      responses:
+ *         '200':
+ *            description: This should return all reviews
+ */
+router.get("/reviews/search", async (req, res) => {
+  // const searchQuery = req.query.searchquery;
+
+  console.log("search API");
+
+  const searchQueryAddress = req.body.address;
+  console.log(searchQueryAddress);
+  const addressRegex = new RegExp(searchQueryAddress, "i");
+  if (searchQueryAddress != null) {
+    const posts = await Post.find({
+      address: addressRegex,
+    })
+      .limit(10)
+      .sort({ updatedAt: DESC });
+  } else {
+    res.end();
+  }
+  res.end();
+});
+
+/**
+ * @swagger
+ * /reviews:
+ *    get:
+ *      description: This should return all reviews
+ *      responses:
+ *         '200':
+ *            description: This should return all reviews
+ */
 router.get("/reviews/:id", async (req, res) => {
   const post = await Post.findOne({ _id: req.params.id });
   res.send(post);
