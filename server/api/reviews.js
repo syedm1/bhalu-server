@@ -16,7 +16,7 @@ const ASCEND = "asc";
  *            description: This should return all reviews
  */
 router.get("/reviews", async (req, res) => {
-  console.log("in get");
+  console.log("Get All reviews");
   const posts = await Post.find();
   res.send(posts);
 });
@@ -31,7 +31,7 @@ router.get("/reviews", async (req, res) => {
  *            description: This should save new review
  */
 router.post("/reviews", async (req, res) => {
-  console.log(req.body.title);
+  console.log("added : " + req.body.title);
   const post = new Post({
     address: req.body.address,
     agentName: req.body.agentName,
@@ -43,9 +43,13 @@ router.post("/reviews", async (req, res) => {
     propertyRating: req.body.propertyRating,
     agentRating: req.body.agentRating,
   });
-  await post.save();
-  console.log(post);
-  res.send(post);
+  try {
+    await post.save();
+    console.log(post);
+    res.send("post added successfuly");
+  } catch (ex) {
+    res.send(ex);
+  }
 });
 
 /**
@@ -58,12 +62,8 @@ router.post("/reviews", async (req, res) => {
  *            description: This should return all reviews for given search params
  */
 router.get("/reviews/search", async (req, res) => {
-  // const searchQuery = req.query.searchquery;
-
   console.log("search API");
-
   const searchQueryAddress = req.body.address;
-  console.log(searchQueryAddress);
   const addressRegex = new RegExp(searchQueryAddress, "i");
   if (searchQueryAddress != null) {
     const posts = await Post.find({
@@ -88,8 +88,15 @@ router.get("/reviews/search", async (req, res) => {
  *            description: This should return review by id
  */
 router.get("/reviews/:id", async (req, res) => {
-  const post = await Post.findOne({ _id: req.params.id });
-  res.send(post);
+  try {
+    if (req.params.id) {
+      console.log("search by id for: " + req.params.id);
+      const post = await Post.findOne({ _id: req.params.id });
+      res.send(post);
+    }
+  } catch (ex) {
+    res.send(ex);
+  }
 });
 
 module.exports = router;
