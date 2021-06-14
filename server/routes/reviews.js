@@ -8,12 +8,12 @@ const ASCEND = "asc";
 
 /**
  * @swagger
- * /reviews:
+ * /api/reviews:
  *    get:
- *      description: This should return all reviews
+ *      description: This should return all the reviews
  *      responses:
  *         '200':
- *            description: This should return all reviews
+ *            description: This should return all the reviews
  */
 router.get("/reviews", async (req, res) => {
   console.log("Get All reviews");
@@ -23,7 +23,7 @@ router.get("/reviews", async (req, res) => {
 
 /**
  * @swagger
- * /reviews:
+ * /api/reviews:
  *    post:
  *      description: This should save new review
  *      responses:
@@ -54,7 +54,7 @@ router.post("/reviews", async (req, res) => {
 
 /**
  * @swagger
- * /reviews/search:
+ * /api/reviews/search:
  *    get:
  *      description: This should return all reviews for given search params
  *      responses:
@@ -80,7 +80,7 @@ router.get("/reviews/search", async (req, res) => {
 
 /**
  * @swagger
- * /reviews/:id:
+ * /api/reviews/:id:
  *    get:
  *      description: This should return review by id
  *      responses:
