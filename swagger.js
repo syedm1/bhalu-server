@@ -20,7 +20,7 @@ const swaggerDefinition = {
       description: "Development server",
     },
     {
-      url: "http://bhalu.io/",
+      url: "http://www.bhalu.io/",
       description: "Production server",
     },
   ],
