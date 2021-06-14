@@ -1,8 +1,17 @@
 const express = require("express");
 const Post = require("../models/review"); // new
 const router = express.Router();
-
-// Get all reviews
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+/**
+ * @swagger
+ * /reviews:
+ *    get:
+ *      description: This should return all reviews
+ *      responses:
+ *         '200':
+ *            description: This should return all reviews
+ */
 router.get("/reviews", async (req, res) => {
   console.log("in get");
   const posts = await Post.find();
