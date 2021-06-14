@@ -71,6 +71,7 @@ router.get("/reviews/search", async (req, res) => {
     })
       .limit(10)
       .sort({ updatedAt: DESCEND });
+    res.send(posts);
   } else {
     res.end();
   }
