@@ -70,7 +70,7 @@ router.get("/reviews/search", async (req, res) => {
       address: addressRegex,
     })
       .limit(10)
-      .sort({ updatedAt: DESC });
+      .sort({ updatedAt: DESCEND });
   } else {
     res.end();
   }
