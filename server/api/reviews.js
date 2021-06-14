@@ -50,12 +50,12 @@ router.post("/reviews", async (req, res) => {
 
 /**
  * @swagger
- * /reviews:
+ * /reviews/search:
  *    get:
- *      description: This should return all reviews
+ *      description: This should return all reviews for given search params
  *      responses:
  *         '200':
- *            description: This should return all reviews
+ *            description: This should return all reviews for given search params
  */
 router.get("/reviews/search", async (req, res) => {
   // const searchQuery = req.query.searchquery;
@@ -79,12 +79,12 @@ router.get("/reviews/search", async (req, res) => {
 
 /**
  * @swagger
- * /reviews:
+ * /reviews/:id:
  *    get:
- *      description: This should return all reviews
+ *      description: This should return review by id
  *      responses:
  *         '200':
- *            description: This should return all reviews
+ *            description: This should return review by id
  */
 router.get("/reviews/:id", async (req, res) => {
   const post = await Post.findOne({ _id: req.params.id });
