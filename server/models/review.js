@@ -32,6 +32,15 @@ const reviewSchema = new Schema({
   agentRating: {
     type: mongoose.Types.Decimal128,
   },
+  likes: {
+    type: Number,
+  },
+  disLikes: {
+    type: Number,
+  },
+  reports: {
+    type: Number,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
