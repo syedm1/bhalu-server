@@ -14,7 +14,7 @@ const authReq = require("./server/middlewares/authenticateRequests");
 require("./server/config/mongoConnection.js");
 require("./server/middlewares/cors")(app);
 const SwaggerOptions = require("./swagger");
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(logger("dev"));
 app.use(cookieParser());
@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static(publicPath));
 app.use("/api/auth", usersRouter);
-app.use("/api/", authReq.authenticateRequests);
+//app.use("/api/", authReq.authenticateRequests);
 app.use("/api", reviewsRouter);
 const specs = swaggerJSDoc(SwaggerOptions);
 app.use(
